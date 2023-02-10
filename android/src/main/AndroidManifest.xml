@@ -1,4 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.atrust">
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.atrust">
 
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+
+      <application>
+        <service
+          android:name="com.sangfor.ssl.l3vpn.service.EasyappSvpnService"
+          android:exported="false"
+          android:usesCleartextTraffic="true"
+          android:permission="android.permission.BIND_VPN_SERVICE"
+          tools:ignore="MissingClass"
+          tools:targetApi="m">
+          <intent-filter>
+            <action android:name="com.sangfor.ssl.l3vpn.service.EasyappSvpnService" />
+          </intent-filter>
+        </service>
+      </application>
 </manifest>

@@ -34,6 +34,9 @@ android {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
     buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+    ndk {
+      abiFilters 'armeabi-v7a'
+    }
   }
   buildTypes {
     release {
@@ -50,6 +53,11 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
+  repositories {
+    flatDir {
+      dirs 'libs'
+    }
+  }
 }
 
 repositories {
@@ -62,7 +70,9 @@ dependencies {
   // For < 0.71, this will be from the local maven repo
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
-  implementation "com.facebook.react:react-native"
+  implementation "com.facebook.react:react-native:0.20.1"
+//  implementation fileTree(dir: "libs", include: ["*.aar"])
+  implementation(name: 'SangforSDK', ext: 'aar')
 }
 
 if (isNewArchitectureEnabled()) {
@@ -72,3 +82,4 @@ if (isNewArchitectureEnabled()) {
     codegenJavaPackageName = "com.atrust"
   }
 }
+
