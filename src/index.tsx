@@ -6,8 +6,8 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-const Atrust = NativeModules.Atrust
-  ? NativeModules.Atrust
+const AtrustVpn = NativeModules.RNSangforAtrustVpn
+  ? NativeModules.RNSangforAtrustVpn
   : new Proxy(
       {},
       {
@@ -17,6 +17,15 @@ const Atrust = NativeModules.Atrust
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Atrust.multiply(a, b);
+export function init(): Promise<any> {
+  return AtrustVpn.init();
+}
+
+export function login(
+  url: string,
+  username: string,
+  password: string
+): Promise<any> {
+  init();
+  return AtrustVpn.login(url, username, password);
 }

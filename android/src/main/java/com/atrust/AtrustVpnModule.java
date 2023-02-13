@@ -100,7 +100,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
       protected void onPostExecute(Boolean result) {
 
         try {
-          Map<String, String> authParams = new HashMap<String, String>();
+          Map<String, String> authParams = new HashMap<>();
 
           authParams.put(SFConstants.AUTH_KEY_SMS, code);
 

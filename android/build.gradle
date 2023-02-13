@@ -71,8 +71,8 @@ dependencies {
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:0.20.1"
-//  implementation fileTree(dir: "libs", include: ["*.aar"])
-  implementation(name: 'SangforSDK', ext: 'aar')
+ implementation fileTree(dir: "libs", include: ["*.aar"])
+  // implementation(name: 'SangforSDK', ext: 'aar')
 }
 
 if (isNewArchitectureEnabled()) {

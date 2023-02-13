@@ -1,7 +1,7 @@
 {
   "name": "react-native-atrust",
   "version": "0.1.0",
-  "description": "test",
+  "description": "Atrust SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -42,7 +42,7 @@
     "android"
   ],
   "repository": "https://github.com/fengwangjie/react-native-atrust",
-  "author": "冯王杰 <fengwangjie224@163.com> (https://github.com/fengwangjie)",
+  "author": "handaotech",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fengwangjie/react-native-atrust/issues"
