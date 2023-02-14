@@ -1,24 +1,14 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-atrust' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const AtrustVpn = NativeModules.RNSangforAtrustVpn
-  ? NativeModules.RNSangforAtrustVpn
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+// const LINKING_ERROR =
+//   `The package 'react-native-atrust' doesn't seem to be linked. Make sure: \n\n` +
+//   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+//   '- You rebuilt the app after installing the package\n' +
+//   '- You are not using Expo Go\n';
+const { RNSangforAtrustVpn } = NativeModules;
 
 export function init(): Promise<any> {
-  return AtrustVpn.init();
+  return RNSangforAtrustVpn.init();
 }
 
 export function login(
@@ -27,5 +17,5 @@ export function login(
   password: string
 ): Promise<any> {
   init();
-  return AtrustVpn.login(url, username, password);
+  return RNSangforAtrustVpn.login(url, username, password);
 }

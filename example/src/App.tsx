@@ -4,23 +4,28 @@ import { Button, StyleSheet, View } from 'react-native';
 import { init, login } from 'react-native-atrust';
 
 export default function App() {
-  const handleLogin = async () => {
-    return init()
+  const atrustLogin = () => {
+    init()
       .then(() => {
-        return login('https://vpn.example.com', 'username', 'password').then(
-          (res) => {
-            console.log('login', res);
-          }
-        );
+        login('http://127.0.0.1', 'username', 'password')
+          .then((result) => {
+            console.log('result', result);
+          })
+          .catch((err: any) => {
+            console.log({ message: 'Login failed:' + err, type: 'danger' });
+          });
       })
-      .finally(() => {
-        console.log('finally');
+      .then(() => {
+        console.log('init success');
+      })
+      .catch((err) => {
+        console.log({ message: 'Atrust Init failed:' + err, type: 'danger' });
       });
   };
 
   return (
     <View style={styles.container}>
-      <Button title="登录" onPress={handleLogin} />
+      <Button title="登录" onPress={atrustLogin} />
     </View>
   );
 }
