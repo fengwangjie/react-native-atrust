@@ -1,10 +1,4 @@
 import { NativeModules } from 'react-native';
-
-// const LINKING_ERROR =
-//   `The package 'react-native-atrust' doesn't seem to be linked. Make sure: \n\n` +
-//   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-//   '- You rebuilt the app after installing the package\n' +
-//   '- You are not using Expo Go\n';
 const { RNSangforAtrustVpn } = NativeModules;
 
 export function login(
@@ -13,7 +7,9 @@ export function login(
   password: string
 ): Promise<any> {
   if (!RNSangforAtrustVpn) {
-    Promise.reject(new Error('RNSangforAtrustVpn is not available'));
+    Promise.reject('RNSangforAtrustVpn is not available');
+  } else {
+    return RNSangforAtrustVpn.login(url, username, password);
   }
-  return RNSangforAtrustVpn.login(url, username, password);
+  return Promise.resolve('sucesss');
 }
