@@ -1,2 +1,0 @@
-project(':sdk').projectDir = new File(rootDir, 'android/sdk/')
-include ':sdk'

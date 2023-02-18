@@ -19,3 +19,14 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
     }
 }
+allprojects {
+  repositories {
+    maven {
+      credentials {
+        username '63f07996277d7a421ef59267'
+        password '=[OFkGbg2ne8'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2332979-release-filYFJ/'
+    }
+  }
+}

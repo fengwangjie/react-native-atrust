@@ -78,6 +78,19 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+allprojects {
+  repositories {
+    maven {
+      credentials {
+        username '63f07996277d7a421ef59267'
+        password '=[OFkGbg2ne8'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2332979-release-filYFJ/'
+    }
+  }
+}
+
+
 /**
  * Private function to get the list of Native Architectures you want to build.
  * This reads the value from reactNativeArchitectures in your gradle.properties

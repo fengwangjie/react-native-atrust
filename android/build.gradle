@@ -9,6 +9,19 @@ buildscript {
   }
 }
 
+allprojects {
+  repositories {
+    maven {
+      credentials {
+        username '63f07996277d7a421ef59267'
+        password '=[OFkGbg2ne8'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2332979-release-filYFJ/'
+    }
+  }
+}
+
+
 def isNewArchitectureEnabled() {
   return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
 }
@@ -58,6 +71,13 @@ android {
 repositories {
   mavenCentral()
   google()
+  maven {
+      credentials {
+        username '63f07996277d7a421ef59267'
+        password '=[OFkGbg2ne8'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2332979-release-filYFJ/'
+  }
 }
 
 
@@ -68,7 +88,7 @@ dependencies {
   implementation "com.facebook.react:react-native:0.20.1"
   // implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
   // implementation fileTree(dir: "·", include: ["*.aar"])
- implementation project(':sdk')
+  implementation 'com.sangfor.sdk:sangfor-atrust-sdk:0.0.1'
   // implementation(name: 'SangforSDK', ext: 'aar')
 }
 
