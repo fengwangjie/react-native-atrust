@@ -5,7 +5,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:3.5.0"
+    classpath "com.android.tools.build:gradle:7.2.1"
   }
 }
 
@@ -52,12 +52,6 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
-
-  sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
 }
 
 
@@ -72,7 +66,9 @@ dependencies {
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:0.20.1"
- implementation fileTree(dir: "libs", include: ["*.aar"])
+  // implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
+  // implementation fileTree(dir: "·", include: ["*.aar"])
+ implementation project(':sangforsdk')
   // implementation(name: 'SangforSDK', ext: 'aar')
 }
 
@@ -80,7 +76,7 @@ if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
     libraryName = "Atrust"
-    codegenJavaPackageName = "com.atrust"
+    codegenJavaPackageName = 'com.atrust'
   }
 }
 
