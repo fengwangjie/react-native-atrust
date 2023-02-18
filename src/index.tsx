@@ -7,15 +7,13 @@ import { NativeModules } from 'react-native';
 //   '- You are not using Expo Go\n';
 const { RNSangforAtrustVpn } = NativeModules;
 
-export function init(): Promise<any> {
-  return RNSangforAtrustVpn.init();
-}
-
 export function login(
   url: string,
   username: string,
   password: string
 ): Promise<any> {
-  init();
+  if (!RNSangforAtrustVpn) {
+    Promise.reject(new Error('RNSangforAtrustVpn is not available'));
+  }
   return RNSangforAtrustVpn.login(url, username, password);
 }

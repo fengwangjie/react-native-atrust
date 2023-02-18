@@ -2,6 +2,7 @@ package com.atrust;
 
 import android.os.AsyncTask;
 
+import com.atrust.exception.VpnInitException;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
@@ -27,38 +28,11 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
 
   private static Promise PROMISE;
   private SFAuthType mNextAuthType;
-  private String TAG = "LoginAtrust";
+  private final String TAG = "RNSangforAtrustVpn";
 
   public AtrustVpnModule(ReactApplicationContext reactContext) {
     super(reactContext);
     reactContext.addLifecycleEventListener(this);
-  }
-
-  @ReactMethod
-  public void init(final Promise promise) {
-    PROMISE = promise;
-    AsyncTask task = new AsyncTask<Object, Object, Boolean>() {
-      @Override
-      protected Boolean doInBackground(Object... params) {
-        return true;
-      }
-
-      @Override
-      protected void onPostExecute(Boolean result) {
-        SFSDKMode sdkMode = SFSDKMode.MODE_VPN;
-        try {
-          int sdkFlags = SFSDKFlags.FLAGS_HOST_APPLICATION;      //表明是单应用或者是主应用
-          sdkFlags |= SFSDKFlags.FLAGS_VPN_MODE_TCP;              //表明使用VPN功能中的TCP模式
-          SFUemSDK.getInstance().initSDK(getReactApplicationContext(), sdkMode, sdkFlags, null);//初始化SDK
-          WritableMap map = Arguments.createMap();
-          map.putString("success", "1");
-          promise.resolve(map);
-        } catch (Exception e) {
-          promise.reject(e.getMessage());
-        }
-      }
-    };
-    task.execute();
   }
 
   @ReactMethod
@@ -76,6 +50,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
       protected void onPostExecute(Boolean result) {
 
         try {
+          initSDK();
           SFUemSDK.getInstance().startPasswordAuth(url, username, password);
         } catch (Exception e) {
           PROMISE.reject("failed");
@@ -170,7 +145,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
 
   @Override
   public String getName() {
-    return "RNSangforAtrustVpn";
+    return TAG;
   }
 
   private void resolve(String message) {
@@ -179,6 +154,17 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
     if (PROMISE != null) {
       PROMISE.resolve(map);
       PROMISE = null;
+    }
+  }
+
+  private void initSDK() throws VpnInitException {
+    SFSDKMode sdkMode = SFSDKMode.MODE_VPN;
+    try {
+      int sdkFlags = SFSDKFlags.FLAGS_HOST_APPLICATION;      //表明是单应用或者是主应用
+      sdkFlags |= SFSDKFlags.FLAGS_VPN_MODE_TCP;              //表明使用VPN功能中的TCP模式
+      SFUemSDK.getInstance().initSDK(getReactApplicationContext(), sdkMode, sdkFlags, null);//初始化SDK
+    } catch (Exception e) {
+      throw new VpnInitException("0", "初始化SDK失败");
     }
   }
 
