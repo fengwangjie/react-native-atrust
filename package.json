@@ -1,6 +1,6 @@
 {
   "name": "react-native-atrust",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Atrust SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
