@@ -1,2 +1,1 @@
-// project(':sangforsdk').projectDir = new File(rootDir, 'sangforsdk/')
-include ':sangforsdk'
+include ':sdk'

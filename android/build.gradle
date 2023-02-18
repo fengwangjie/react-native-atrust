@@ -68,7 +68,7 @@ dependencies {
   implementation "com.facebook.react:react-native:0.20.1"
   // implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs/')
   // implementation fileTree(dir: "·", include: ["*.aar"])
- implementation project(':sangforsdk')
+ implementation project(':sdk')
   // implementation(name: 'SangforSDK', ext: 'aar')
 }
 

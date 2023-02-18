@@ -1,2 +1,2 @@
-project(':sangforsdk').projectDir = new File(rootDir, 'sangforsdk/')
-include ':sangforsdk'
+project(':sdk').projectDir = new File(rootDir, 'android/sdk/')
+include ':sdk'
