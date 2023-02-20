@@ -7,7 +7,7 @@ export function login(
   password: string
 ): Promise<any> {
   if (!RNSangforAtrustVpn) {
-    return Promise.reject('RNSangforAtrustVpn is not available');
+    return Promise.reject('sdk组件未安装');
   } else {
     return RNSangforAtrustVpn.login(url, username, password);
   }

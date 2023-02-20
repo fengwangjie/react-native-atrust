@@ -53,7 +53,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
           initSDK();
           SFUemSDK.getInstance().startPasswordAuth(url, username, password);
         } catch (Exception e) {
-          PROMISE.reject("failed");
+          PROMISE.reject("授权异常", e.getMessage());
         }
       }
     };
@@ -81,7 +81,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
 
           SFUemSDK.getInstance().doSecondaryAuth(mNextAuthType, authParams);
         } catch (Exception e) {
-          PROMISE.reject("failed");
+          PROMISE.reject("SecondLogin", e.getMessage());
         }
       }
     };
@@ -116,7 +116,7 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
             }
           });
         } catch (Exception e) {
-          PROMISE.reject("failed");
+          PROMISE.reject("regetSmsCode", e.getMessage());
         }
       }
     };
@@ -157,6 +157,13 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
     }
   }
 
+  private void reject(long errorCode, String message) {
+    if (PROMISE != null) {
+      PROMISE.reject(String.valueOf(errorCode), message);
+      PROMISE = null;
+    }
+  }
+
   private void initSDK() throws VpnInitException {
     SFSDKMode sdkMode = SFSDKMode.MODE_VPN;
     try {
@@ -188,12 +195,12 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
 
   @Override
   public void onAuthSuccess(final SFBaseMessage message) {
-    this.resolve("success");
+    this.resolve(message.mErrStr);
   }
 
   @Override
   public void onAuthFailed(final SFBaseMessage message) {
-    this.resolve(message.mErrStr);
+    this.reject(message.mErrCode, message.mErrStr);
   }
 
 

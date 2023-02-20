@@ -11,9 +11,9 @@ import {
 import { login } from 'react-native-atrust';
 
 export default function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [url, setUrl] = useState('');
+  const [username, setUsername] = useState('fengwangjie');
+  const [password, setPassword] = useState('123456');
+  const [url, setUrl] = useState('https://vpn2.bupt.edu.cn');
   const atrustLogin = () => {
     login(url, username, password)
       .then((result) => {
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Sangfor Aturst test</Text>
+      <Text>测试</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
