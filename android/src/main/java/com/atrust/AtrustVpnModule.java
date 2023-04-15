@@ -143,6 +143,27 @@ public class AtrustVpnModule extends ReactContextBaseJavaModule implements Lifec
     task.execute();
   }
 
+  @ReactMethod
+  public void getVpnStatus(final Promise promise) {
+    if (promise != null) {
+      PROMISE = promise;
+    }
+    AsyncTask task = new AsyncTask<Object, Object, Boolean>() {
+
+      @Override
+      protected Boolean doInBackground(Object... params) {
+        return true;
+      }
+
+      @Override
+      protected void onPostExecute(Boolean result) {
+        String status = SFUemSDK.getInstance().getAuthStatus().toString();
+        promise.resolve(status);
+      }
+    };
+    task.execute();
+  }
+
   @Override
   public String getName() {
     return TAG;
