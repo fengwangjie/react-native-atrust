@@ -14,7 +14,8 @@ npm install react-native-atrust
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.23233
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.23233
 
 ## License
 
